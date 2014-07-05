@@ -10,14 +10,12 @@ Selector.getSelected = function() {
     }
     return t;
 };
-
 Selector.getSelectionCharOffsetsWithin = function() {
     var start = 0,
         end = 0;
     var sel, range, priorRange;
     var element = document.getElementById("sidebar-content");
     if (typeof window.getSelection != "undefined") {
-        console.log(window.getSelection())
         range = window.getSelection().getRangeAt(0);
         priorRange = range.cloneRange();
         priorRange.selectNodeContents(element);
@@ -37,7 +35,6 @@ Selector.getSelectionCharOffsetsWithin = function() {
         end: end
     };
 };
-
 Selector.mouseup = function() {
     var st = Selector.getSelected();
     var selection = Selector.getSelectionCharOffsetsWithin();
@@ -45,20 +42,15 @@ Selector.mouseup = function() {
         var containerId = encodeURIComponent(st + '');
         var $container = $('<div id="' + containerId + '"></div>');
         $('#right-sidebar .innerContainer').append($container);
-
-        $container.append([$('<button>remove</button>')
-            .click(function() {
-                console.log("remove")
+        $container.append([$('<span class="glyphicon glyphicon-remove"></span>').click(function() {
                 $container.remove();
             }),
-            $('<input type="hidden" ' + 'value="newLabel:' + st + '//' + selection.start + '//' + selection.end + '" ' + 'name="newLabel:' + st + '//' + selection.start + '//' + selection.end + '"/>'),
+            $('<input type="hidden" value="' + st + '//' + selection.start + '//' + selection.end + '" ' + 'name="' + st + '//' + selection.start + '//' + selection.end + '"/>'),
             $('<span>' + st + '</span><br />')
         ]);
     }
 };
-
 var candidateNames = [];
-$(document).ready(
-    function() {
-        $("#newEntity").bind("click", Selector.mouseup);
-    });
+$(document).ready(function() {
+    $("#newEntity").bind("click", Selector.mouseup);
+});

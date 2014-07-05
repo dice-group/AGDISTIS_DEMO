@@ -1,25 +1,33 @@
 var myApp = angular.module('AgdistisService', ['ngResource']);
-
 myApp.factory('agdistis_en', function($resource) {
-    console.log("agdistis_en");
-    return $resource('agdistisen');
+    return $resource('agdistis');
 });
 //TODO - get text language endpoint
 myApp.controller('AgdistisCtrl', ['$scope', 'agdistis_en',
     function($scope, agdistis_en) {
         // Controller magic
-        $scope.userInput = "<entity>University of Leipzig</entity>";
-        $scope.text = "Agdistis";
-
-        $scope.input = function(text) {
-            console.log("entities " + $scope.entities)
-            console.log("user input: " + text);
-            agdistis_en.save(
-                $scope.entities,
-                function(data) {
-                    console.log(data)
-                    $scope.result = data.result
-                });
+        $scope.userInput = "University of Leipzig";
+        $scope.input = function() {
+            $scope.show = false
+            $scope.notSupported = false;
+            var entitiesDom = angular.element(document.querySelector('#entities'))
+            var entities = []
+            angular.forEach(entitiesDom[0].childNodes, function(value, key) {
+                entities[entities.length] = value.childNodes[1].name;
+            });
+            agdistis_en.save({
+                "text": $scope.userInput,
+                "entities": entities
+            }, function(data) {
+                if (data.nosup) {
+                    $scope.notSupported = true;
+                    $scope.detectedlanguage = data.nosup;
+                } else {
+                    $scope.namedEntities = data.namedEntities
+                    $scope.show = true
+                    $scope.detectedlanguage = data.detectedlanguage
+                }
+            });
         }
     }
 ]);
