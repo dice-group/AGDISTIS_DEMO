@@ -2,14 +2,15 @@
 @import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic);
 
 * {
-	-webkit-user-select: none; /* Chrome/Safari */
-	-moz-user-select: -moz-none; /* Firefox */
-	-ms-user-select: none; /* IE10+ */
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	
 
-	/* Rules below not implemented in browsers yet */
+	/* Rules below not implemented in browsers yet
 	-o-user-select: none;
 	user-select: none;
-
+	*/
 	font-family: 'Libre Baskerville', Verdana, sans-serif;
 }
 
@@ -22,7 +23,7 @@ body {
 h1 {
 	font-family: 'Lobster', cursive;
 	width: 100%;
-	text-align: center;
+/*	text-align: center;*/
 }
 
 hr {

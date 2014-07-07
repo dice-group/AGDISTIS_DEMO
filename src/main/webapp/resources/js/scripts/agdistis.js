@@ -2,11 +2,10 @@ var myApp = angular.module('AgdistisService', ['ngResource']);
 myApp.factory('agdistis_en', function($resource) {
     return $resource('agdistis');
 });
-//TODO - get text language endpoint
 myApp.controller('AgdistisCtrl', ['$scope', 'agdistis_en',
     function($scope, agdistis_en) {
-        // Controller magic
-        $scope.userInput = "University of Leipzig";
+        $scope.showAnnotation = false;
+        $scope.userInput = "University of Leipzig is in Leipzig";
         $scope.input = function() {
             $scope.show = false
             $scope.notSupported = false;
@@ -23,11 +22,20 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis_en',
                     $scope.notSupported = true;
                     $scope.detectedlanguage = data.nosup;
                 } else {
-                    $scope.namedEntities = data.namedEntities
+                    $scope.namedEntities = data
                     $scope.show = true
                     $scope.detectedlanguage = data.detectedlanguage
                 }
             });
+        }
+
+        $scope.resetEverything = function() {
+            $scope.showAnnotation = false;
+            $scope.show = false
+            $scope.notSupported = false;
+            $scope.detectedlanguage = "";
+            $scope.namedEntities = "";
+            angular.element("#entities").children().remove();
         }
     }
 ]);

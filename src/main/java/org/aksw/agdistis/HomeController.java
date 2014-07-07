@@ -3,13 +3,19 @@ package org.aksw.agdistis;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.URLEncoder;
+import java.text.Normalizer.Form;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
+import org.aksw.agdistis.model.Entity;
 import org.aksw.agdistis.model.FrontendContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,7 +68,7 @@ public class HomeController {
     @RequestMapping(value = "/agdistis", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String agdistisEndpoint(Locale locale, Model model, @RequestBody String text) throws LangDetectException {
-        logger.debug("TEXT {}.", text);
+        logger.info("TEXT {}.", text);
         FrontendContent fromJson = gson.fromJson(text, FrontendContent.class);
         String detectedLanguage = detectLanguage(fromJson.getText());
         logger.debug("language: {}", detectedLanguage);
@@ -79,7 +85,7 @@ public class HomeController {
             return "{\"nosup\": \"" + detectedLanguage + "\"}";
         }
 
-        text = "text=" + textToSend + "&type=agdistis";
+        text = "text='" + textToSend + "'&type=agdistis";
         logger.info("send: {}", text);
         ResponseEntity<String> agdistisResultEntity = sendRequest(text, url);
         String agdistisResult = agdistisResultEntity.getBody();
@@ -95,19 +101,49 @@ public class HomeController {
     }
 
     private String extracted(FrontendContent fromJson) {
-        String textToSend = fromJson.getText();
-        for (String f : fromJson.getEntities()) {
-            String[] split = f.split("//");
+        String result = "";
+        StringBuilder textToSend = new StringBuilder(fromJson.getText());
+        Entity[] entities = getEntities(fromJson);
+
+        textToSend = annotateTextFromRightToLeft(entities, textToSend);
+        try {
+            result = URLEncoder.encode(textToSend.toString(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        logger.info("encoded {}", textToSend);
+        return result;
+    }
+
+    private Entity[] getEntities(FrontendContent fromJson) {
+        Entity[] result = new Entity[fromJson.getEntities().length];
+        for (int i = 0; i < fromJson.getEntities().length; i++) {
+            String[] split = fromJson.getEntities()[i].split("//");
             String entity = split[0];
+            int begin = Integer.valueOf(split[1]);
+            int end = Integer.valueOf(split[2]);
             String ent = "<entity>" + entity + "</entity>";
-            textToSend = textToSend.replace(entity, ent);
+            result[i] = new Entity(ent, begin, end);
+        }
+        Arrays.sort(result);
+        return result;
+    }
+
+    private StringBuilder annotateTextFromRightToLeft(Entity[] entities, StringBuilder textToSend) {
+        for (int i = entities.length - 1; i >= 0; i--) {
+            Entity e = entities[i];
+            textToSend = textToSend.replace(e.getBegin(), e.getEnd(), e.getEntity());
         }
         return textToSend;
     }
 
     private ResponseEntity<String> sendRequest(String text, String u) {
         RestTemplate rest = new RestTemplate();
-        ResponseEntity<String> postForO = rest.postForEntity(u, text, String.class, "UTF-8");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf("application/x-www-form-urlencoded;charset=UTF-8"));
+
+        HttpEntity<String> entity = new HttpEntity<String>(text, headers);
+        ResponseEntity<String> postForO = rest.postForEntity(u, entity, String.class);
         return postForO;
     }
 

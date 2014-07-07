@@ -3,54 +3,66 @@
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/main.css">
 <link rel="stylesheet" href="resources/css/jquery-ui-1.10.0.custom.css">
-<!-- Optional theme -->
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
 
+<script src="resources/js/jquery-1.11.1.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 </head>
-<body unselectable="off">
+<body>
+
 	<div ng-controller="AgdistisCtrl">
-		<div class="page-header">Agdistis Demo</div>
-		<div id="left-sidebar">
-			<div class="subtitle">1. Input Text</div>
-			<textarea ng-model="userInput"></textarea>
-			<div class="subtitle">2. Mark Words</div>
-			<div class="innerContainer">
-				<div id="sidebar-content" unselectable="off">{{userInput}}</div>
+		<div class=row>
+			<div class="col-md-6 col-md-offset-2">
+				<h1>Agdistis Demo</h1>
 			</div>
-			<div class="buttonContainer">
-				<input type="button" id="newEntity"
-					value="Mark selected text as new Entity" />
-			</div>
-			<div class="subtitle">3. Send</div>
-			<div class="buttonContainer">
-				<button ng-click="input()">send</button>
-			</div>
-			<div ng-show="notSupported">Language {{detectedlanguage}} not
-				supported</div>
-			<div ng-show="show">
-				Language: {{detectedlanguage}}
-				<div ng-repeat="(key, value) in namedEntities">
-					<br>namedEntity: {{value.namedEntity}}<br> start:
-					{{value.start}}<br> disambiguatedURL: <a
-						href="{{value.disambiguatedURL}}">{{value.disambiguatedURL}}</a><br>
-					offset: {{value.offset}}
+		</div>
+		<div ng-hide="showAnnotation" class="row">
+
+			<div class="col-md-6 col-md-offset-2">
+
+				<div class="innerContainer">
+					<textarea class="form-control" rows=3 ng-model="userInput"></textarea>
+				</div>
+				<div class="col-md-6">
+					<button type="button" class="btn btn-default"
+						ng-click="showAnnotation=true">Submit</button>
 				</div>
 			</div>
 		</div>
-		<div id="right-sidebar">
-			<div id="entities" class="innerContainer"></div>
+
+		<div ng-show="showAnnotation">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-2">
+					<div class="innerContainer">
+						<div id="sidebar-content" unselectable="off">{{userInput}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-2">
+					<button id="newEntity" type="button" class="btn btn-default">Mark
+						selected text as new Entity</button>
+					<button type="button" class="btn btn-default"
+						ng-click="resetEverything()">Reset/Edit Text</button>
+					<div id="entities" class="innerContainer"></div>
+					<button type="button" class="btn btn-default" ng-click="input()">Get
+						Entities</button>
+					<div ng-show="show" class="innerContainer">
+						<div ng-show="notSupported">Language "{{detectedlanguage}}"
+							not supported</div>
+						<pre>{{namedEntities | json}}</pre>
+					</div>
+				</div>
+			</div>
 		</div>
-
+	</div>
 	</div>
 
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.min.js"></script>
-	<script src="resources/js/jquery-1.11.1.min.js"></script>
-	<!-- <script src="resources/js/jquery-ui-1.10.0.custom.js"></script> -->
-	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/scripts/agdistis.js"></script>
 	<script src="resources/js/scripts/markentity.js"></script>
 </body>

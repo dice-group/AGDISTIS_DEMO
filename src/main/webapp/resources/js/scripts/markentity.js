@@ -41,7 +41,7 @@ Selector.mouseup = function() {
     if (st != '') {
         var containerId = encodeURIComponent(st + '');
         var $container = $('<div id="' + containerId + '"></div>');
-        $('#right-sidebar .innerContainer').append($container);
+        $('#entities').append($container);
         $container.append([$('<span class="glyphicon glyphicon-remove"></span>').click(function() {
                 $container.remove();
             }),
