@@ -89,7 +89,6 @@ public class HomeController {
         logger.info("send: {}", text);
         ResponseEntity<String> agdistisResultEntity = sendRequest(text, url);
         String agdistisResult = agdistisResultEntity.getBody();
-
         StringBuilder result = new StringBuilder();
         result.append("{\"detectedlanguage\":\"");
         result.append(detectedLanguage);
@@ -100,41 +99,25 @@ public class HomeController {
         return result.toString();
     }
 
-    private String extracted(FrontendContent fromJson) {
+    private String extracted(FrontendContent frontendContent) {
         String result = "";
-        StringBuilder textToSend = new StringBuilder(fromJson.getText());
-        Entity[] entities = getEntities(fromJson);
 
-        textToSend = annotateTextFromRightToLeft(entities, textToSend);
+        String annotatedText = addEntityAnnotation(frontendContent);
+        logger.info("annotated Text: {}", annotatedText);
         try {
-            result = URLEncoder.encode(textToSend.toString(), "UTF-8");
+            result = URLEncoder.encode(annotatedText, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        logger.info("encoded {}", textToSend);
+        logger.info("encoded {}", result);
         return result;
     }
 
-    private Entity[] getEntities(FrontendContent fromJson) {
-        Entity[] result = new Entity[fromJson.getEntities().length];
-        for (int i = 0; i < fromJson.getEntities().length; i++) {
-            String[] split = fromJson.getEntities()[i].split("//");
-            String entity = split[0];
-            int begin = Integer.valueOf(split[1]);
-            int end = Integer.valueOf(split[2]);
-            String ent = "<entity>" + entity + "</entity>";
-            result[i] = new Entity(ent, begin, end);
-        }
-        Arrays.sort(result);
-        return result;
-    }
-
-    private StringBuilder annotateTextFromRightToLeft(Entity[] entities, StringBuilder textToSend) {
-        for (int i = entities.length - 1; i >= 0; i--) {
-            Entity e = entities[i];
-            textToSend = textToSend.replace(e.getBegin(), e.getEnd(), e.getEntity());
-        }
-        return textToSend;
+    private String addEntityAnnotation(FrontendContent frontendContent) {
+        String text = frontendContent.getText();
+        text = text.replaceAll("\\[", "<entity>");
+        text = text.replaceAll("\\]", "</entity>");
+        return text;
     }
 
     private ResponseEntity<String> sendRequest(String text, String u) {

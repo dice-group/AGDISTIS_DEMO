@@ -2,10 +2,10 @@
 @import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic);
 
 * {
-	-webkit-user-select: none;
+	/*-webkit-user-select: none;
 	-moz-user-select: -moz-none;
 	-ms-user-select: none;
-	
+	*/
 
 	/* Rules below not implemented in browsers yet
 	-o-user-select: none;
@@ -136,6 +136,22 @@ textarea {
 	width: auto;
 }
 
+.entityContainer {
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+
+	background-color: #fff;
+	border: 1px #eee solid;
+	font-size: 10pt;
+	height: auto;
+	margin: 20px;
+	overflow: auto;
+	padding: 10px;
+	width: auto;
+	/*overflow-y:scroll;*/
+}
+
 .italic {
 	font-style: italic;
 }
@@ -143,15 +159,7 @@ textarea {
 .items {
 	display: none;
 }
-.selectable {
-	-webkit-user-select: auto; /* Chrome/Safari */
-	-moz-user-select: text; /* Firefox */
-	-ms-user-select: auto; /* IE10+ */
 
-	/* Rules below not implemented in browsers yet */
-	-o-user-select: auto;
-	user-select: auto;
-}
 .subtitle {
 	font-family: 'Lobster', cursive;
 	width: 100%;
