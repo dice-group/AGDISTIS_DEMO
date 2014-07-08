@@ -32,9 +32,10 @@
 						Entities</button>
 				</div>
 			</div>
-			<div ng-show="show" class="col-md-6 entityContainer">
-				<div ng-show="notSupported">Language "{{detectedlanguage}}"
+			<div ng-show="notSupported"  class="col-md-6 entityContainer">Language "{{detectedlanguage}}"
 					not supported</div>
+			<div ng-show="show" class="col-md-6 entityContainer">
+				
 				<pre>{{namedEntities | json}}</pre>
 			</div>
 		</div>
