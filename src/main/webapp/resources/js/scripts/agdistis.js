@@ -2,13 +2,16 @@ var myApp = angular.module('AgdistisService', ['ngResource']);
 myApp.factory('agdistis', function($resource) {
     return $resource('agdistis');
 });
-myApp.controller('AgdistisCtrl', ['$scope', 'agdistis',
-    function($scope, agdistis_en) {
-        $scope.userInput = "[University of Leipzig] is in [Leipzig]";
+myApp.factory('foxit', function($resource) {
+    return $resource('foxit');
+});
+myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
+    function($scope, agdistis, foxit) {
+        $scope.userInput = "University of Leipzig is in Leipzig";
         $scope.input = function() {
             $scope.show = false
             $scope.notSupported = false;
-            agdistis_en.save({
+            agdistis.save({
                 "text": $scope.userInput
             }, function(data) {
                 if (data.nosup) {
@@ -19,6 +22,18 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis',
                     $scope.show = true
                 }
             });
+
+        }
+
+        $scope.foxit = function() {
+            $scope.show = false
+            $scope.notSupported = false;
+            foxit.save({
+                "text": $scope.userInput
+            }, function(data) {
+                $scope.userInput = data.text
+            });
+
         }
 
         $scope.german = function() {
@@ -35,7 +50,11 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis',
         }
 
         $scope.chinese = function() {
-            $scope.userInput = "[莱比锡大学]（Universität Leipzig）位于德国萨克森州的莱比锡，创立于1409年，是欧洲最古老的大学之一，也是现今德国管辖地区内历史第二悠久的大学，仅次于海德堡大学（1386年），另两所创建曾早于莱比锡大学的大学科隆大学（1388年—1798年，1919年重建）和埃尔福特大学（1392年—1816年，1994年重建）都曾关闭后又重开。1953年至1991年间，莱比锡大学曾名为“莱比锡卡尔·马克思大学”。";
+            $scope.userInput = "[北京] 和 [上海] 分别是 [中国] 的政治和经济中心.";
+        }
+
+        $scope.englishUnanotated = function() {
+            $scope.userInput = "Leipzig University (German: Universität Leipzig), located in Leipzig in the Free State of Saxony, Germany, is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in Germany. Famous alumni include Leibniz, Goethe, Nietzsche, Wagner, Angela Merkel, Raila Odinga, Tycho Brahe and nine Nobel laureates are associated with this university."
         }
     }
 ]);

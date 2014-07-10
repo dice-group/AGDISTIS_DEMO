@@ -20,6 +20,8 @@
 				ng-click="english()">English Example</button>
 			<button type="button" class="btn btn-default navbar-btn"
 				ng-click="chinese()">Chinese Example</button>
+					<button type="button" class="btn btn-default navbar-btn"
+				ng-click="englishUnanotated()">English unannotated</button>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
@@ -27,15 +29,17 @@
 					<span>Mark the entities with brackets</span>
 					<textarea class="form-control" rows=12 ng-model="userInput"></textarea>
 				</div>
-				<div class="col-md-1">
+				<div class="col-md-2">
 					<button type="button" class="btn btn-default" ng-click="input()">Get
 						Entities</button>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-default" ng-click="foxit()">Annotate (english only)</button>
 				</div>
 			</div>
 			<div ng-show="notSupported"  class="col-md-6 entityContainer">Language "{{detectedlanguage}}"
 					not supported</div>
 			<div ng-show="show" class="col-md-6 entityContainer">
-				
 				<pre>{{namedEntities | json}}</pre>
 			</div>
 		</div>
