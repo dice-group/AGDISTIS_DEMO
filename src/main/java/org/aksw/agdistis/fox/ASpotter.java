@@ -31,7 +31,7 @@ public abstract class ASpotter {
         connection.setDoInput(true);
         connection.setUseCaches(false);
         connection.setRequestProperty("Accept", "application/json");
-        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         connection.setRequestProperty("Content-Length", String.valueOf(urlParameters.length()));
         DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
         wr.writeBytes(urlParameters);

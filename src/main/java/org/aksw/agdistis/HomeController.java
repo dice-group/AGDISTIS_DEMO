@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.jar.Attributes.Name;
 
 import org.aksw.agdistis.fox.Fox;
+import org.aksw.agdistis.model.AgdistisEntity;
 import org.aksw.agdistis.model.FrontendContent;
 import org.aksw.agdistis.model.NamedEntity;
 import org.aksw.agdistis.model.Result;
@@ -99,9 +100,9 @@ public class HomeController {
 
         textToSend = "text='" + textToSend + "'&type=agdistis";
         logger.info("send: {}", textToSend);
-        NamedEntity[] agdistisResult = sendRequest(textToSend, url);
-        for (NamedEntity namedEntity : agdistisResult) {
-            namedEntity.setEnd(namedEntity.getStart() + namedEntity.getOffset());
+        AgdistisEntity[] agdistisResult = sendRequest(textToSend, url);
+        for (AgdistisEntity n : agdistisResult) {
+            n.setEnd(n.getStart() + n.getOffset());
         }
         result.setDetectedLanguage(detectedLanguage);
         result.setNamedEntities(Lists.newArrayList(agdistisResult));
@@ -138,7 +139,7 @@ public class HomeController {
             for (int i = entities.length - 1; i >= 0; i--) {
                 NamedEntity n = entities[i];
                 logger.info("{} start {} end {}", new Object[] { n.getNamedEntity(), n.getStart(), n.getEnd() });
-                t = t.replace(n.getStart(), n.getEnd(), "[" + n.getNamedEntity() + "]");
+                t = t.replace(n.getStart()[0], n.getEnd()[0], "[" + n.getNamedEntity() + "]");
             }
             frontendContent.setText(t.toString());
             logger.info("annotated: {}", frontendContent.getText());
@@ -169,7 +170,7 @@ public class HomeController {
         return text;
     }
 
-    private NamedEntity[] sendRequest(String text, String u) {
+    private AgdistisEntity[] sendRequest(String text, String u) {
         RestTemplate rest = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf("application/x-www-form-urlencoded;charset=UTF-8"));
@@ -177,7 +178,7 @@ public class HomeController {
         HttpEntity<String> entity = new HttpEntity<String>(text, headers);
         ResponseEntity<String> postForO = rest.postForEntity(u, entity, String.class);
         logger.info("Result: {}", postForO.getBody());
-        return gson.fromJson(postForO.getBody(), NamedEntity[].class);
+        return gson.fromJson(postForO.getBody(), AgdistisEntity[].class);
     }
 
     private String detectLanguage(String text) throws LangDetectException {

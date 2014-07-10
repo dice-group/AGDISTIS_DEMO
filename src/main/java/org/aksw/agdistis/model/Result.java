@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Result {
 
-    private List<NamedEntity> namedEntities;
+    private List<AgdistisEntity> namedEntities;
     private String detectedLanguage;
 
-    public List<NamedEntity> getNamedEntities() {
+    public List<AgdistisEntity> getNamedEntities() {
         return namedEntities;
     }
 
-    public void setNamedEntities(List<NamedEntity> namedEntities) {
+    public void setNamedEntities(List<AgdistisEntity> namedEntities) {
         this.namedEntities = namedEntities;
     }
 
