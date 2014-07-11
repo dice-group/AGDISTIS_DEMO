@@ -30,7 +30,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 public class Fox extends ASpotter {
     private static Logger log = LoggerFactory.getLogger(Fox.class);
     private String requestURL = "http://139.18.2.164:4444/api";
-    private String outputFormat = "N3";
+    private String outputFormat = "N-Triples";
     private String taskType = "NER";
     private String inputType = "text";
 
@@ -39,6 +39,7 @@ public class Fox extends ASpotter {
         urlParameters += "&task=" + taskType;
         urlParameters += "&output=" + outputFormat;
         urlParameters += "&input=" + URLEncoder.encode(inputText, "UTF-8");
+        log.info("to fox: {}", urlParameters);
         return requestPOST(urlParameters, requestURL);
     }
 
@@ -51,7 +52,7 @@ public class Fox extends ASpotter {
             JSONParser parser = new JSONParser();
             JSONObject jsonArray = (JSONObject) parser.parse(foxJSONOutput);
             String output = URLDecoder.decode((String) ((JSONObject) jsonArray).get("output"), "UTF-8");
-            log.info("OUTPUT: {}", output);
+            log.info("From Fox: {}", output);
             String baseURI = "http://dbpedia.org";
             Model model = ModelFactory.createDefaultModel();
             RDFReader r = model.getReader("N3");
@@ -61,7 +62,7 @@ public class Fox extends ASpotter {
                 Resource next = iter.next();
                 StmtIterator statementIter = next.listProperties();
                 NamedEntity ent = new NamedEntity();
-                log.info("ANNOT");
+                log.debug("ANNOT");
                 List<Integer> starts = Lists.newArrayList();
                 List<Integer> ends = Lists.newArrayList();
 
@@ -70,7 +71,7 @@ public class Fox extends ASpotter {
                     String predicateURI = statement.getPredicate().getURI();
                     RDFNode object = statement.getObject();
                     String subject = statement.getSubject().getURI();
-                    log.info("{} -> ({}) -> {}", new Object[] { subject, predicateURI, object });
+                    log.debug("{} -> ({}) -> {}", new Object[] { subject, predicateURI, object });
 
                     if (predicateURI.equals("http://www.w3.org/2000/10/annotation-ns#body")) {
                         ent.setNamedEntity(object.asLiteral().getString());
@@ -125,8 +126,10 @@ public class Fox extends ASpotter {
         ASpotter fox = new Fox();
         List<NamedEntity> entities = fox
                 .getEntities("University of Leipzig is in Leipzig near MDR tower, near Leipzig, Leipzig and in Leipzig also is one");
-        for (NamedEntity namedEntity : entities) {
-            log.info("{}", namedEntity.toString());
+        if (log.isDebugEnabled()) {
+            for (NamedEntity namedEntity : entities) {
+                log.debug("{}", namedEntity.toString());
+            }
         }
     }
 }

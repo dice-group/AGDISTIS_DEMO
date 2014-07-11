@@ -79,7 +79,7 @@ public class HomeController {
     @ResponseBody
     public Result agdistisEndpoint(Locale locale, Model model, @RequestBody FrontendContent frontendContent)
             throws LangDetectException {
-        logger.info("TEXT {}.", frontendContent);
+        logger.info("from Frontend to agdistis {}.", frontendContent);
         Result result = new Result();
         // FrontendContent fromJson = gson.fromJson(text, FrontendContent.class);
         String detectedLanguage = detectLanguage(frontendContent.getText());
@@ -99,7 +99,7 @@ public class HomeController {
         }
 
         textToSend = "text='" + textToSend + "'&type=agdistis";
-        logger.info("send: {}", textToSend);
+        logger.info("to Agdistis: {}", textToSend);
         AgdistisEntity[] agdistisResult = sendRequest(textToSend, url);
         for (AgdistisEntity n : agdistisResult) {
             n.setEnd(n.getStart() + n.getOffset());
@@ -121,7 +121,7 @@ public class HomeController {
     @ResponseBody
     public FrontendContent foxEndpoint(Locale locale, Model model, @RequestBody FrontendContent frontendContent)
             throws LangDetectException {
-        logger.info("TEXT {}.", frontendContent);
+        logger.info("from frontend to fox {}.", frontendContent);
         String text = frontendContent.getText();
         text = text.replaceAll("\\[", "").replace("\\]", "");
         frontendContent.setText(text);
@@ -135,14 +135,14 @@ public class HomeController {
             NamedEntity[] entities = namedEntities.toArray(new NamedEntity[namedEntities.size()]);
             Arrays.sort(entities);
             StringBuilder t = new StringBuilder(text);
-            logger.info("{} entities", entities.length);
+            logger.debug("{} entities to annotate", entities.length);
             for (int i = entities.length - 1; i >= 0; i--) {
                 NamedEntity n = entities[i];
-                logger.info("{} start {} end {}", new Object[] { n.getNamedEntity(), n.getStart(), n.getEnd() });
+                logger.debug("{} start {} end {}", new Object[] { n.getNamedEntity(), n.getStart(), n.getEnd() });
                 t = t.replace(n.getStart()[0], n.getEnd()[0], "[" + n.getNamedEntity() + "]");
             }
             frontendContent.setText(t.toString());
-            logger.info("annotated: {}", frontendContent.getText());
+            logger.debug("annotated: {}", frontendContent.getText());
         } else {
             result.setDetectedLanguage(detectedLanguage + " not supported");
         }
@@ -153,13 +153,13 @@ public class HomeController {
         String result = "";
 
         String annotatedText = addEntityAnnotation(frontendContent);
-        logger.info("annotated Text: {}", annotatedText);
+        logger.debug("annotated Text: {}", annotatedText);
         try {
             result = URLEncoder.encode(annotatedText, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        logger.info("encoded {}", result);
+        logger.debug("encoded {}", result);
         return result;
     }
 
@@ -177,7 +177,7 @@ public class HomeController {
 
         HttpEntity<String> entity = new HttpEntity<String>(text, headers);
         ResponseEntity<String> postForO = rest.postForEntity(u, entity, String.class);
-        logger.info("Result: {}", postForO.getBody());
+        logger.info("from Agdistis: {}", postForO.getBody());
         return gson.fromJson(postForO.getBody(), AgdistisEntity[].class);
     }
 
