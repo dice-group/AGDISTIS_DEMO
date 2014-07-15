@@ -18,8 +18,22 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
                     $scope.notSupported = true;
                     $scope.detectedlanguage = data.nosup;
                 } else {
-                    $scope.namedEntities = data;
+                    //$scope.namedEntities = data;
                     $scope.show = true;
+                    $("#annotated-text").html($scope.userInput);
+                    $("#named-entities").html(JSON.stringify(data, undefined, 2));
+                    
+                    var entities = data.namedEntities;
+                    var colorPallet = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6'];
+                    
+                    for (var i=0; i<entities.length; ++i) {
+                    	var ne = entities[i].namedEntity;
+                    	var coloredAT = $("#annotated-text").html().replace("[" + ne + "]", "<span style=\"color:" + colorPallet[i%9] + "\">[" + ne + "]</span>");
+                    	var coloredPre = $("#named-entities").html().replace("\"" + ne + "\"", "<span style=\"color:" + colorPallet[i%9] + "\">\"" + ne + "\"</span>");
+                    	
+                    	$("#annotated-text").html(coloredAT);
+                    	$("#named-entities").html(coloredPre);
+                    }
                 }
             });
 
@@ -44,7 +58,7 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
                 	  var event = document.createEvent("MouseEvents");
                 	  event.initEvent("click", true, false);
                 	  link.dispatchEvent(event);  
-                	  
+                	  $scope.show = true;
               });
         };
 
@@ -60,23 +74,22 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
         };
 
         $scope.german = function() {
-            $scope.userInput = "Die [Universität Leipzig] – Alma Mater Lipsiensis (AML) – " +
-                "ist die größte [Hochschule] in [Leipzig]. " +
-                "Mit ihrem Gründungsjahr 1409 ist sie auf dem Gebiet der heutigen " +
-                "[Bundesrepublik Deutschland] die zweitälteste, " +
-                "seit ihrer Gründung ohne Unterbrechung arbeitende " +
-                "[Universität] nach der [Ruprecht-Karls-Universität Heidelberg] (1386).";
+        	$scope.show = false;
+            $scope.userInput = "Die [Universität Leipzig] – Alma Mater Lipsiensis (AML) – ist die größte [Hochschule] in [Leipzig]. Mit ihrem Gründungsjahr 1409 ist sie auf dem Gebiet der heutigen [Bundesrepublik Deutschland] die zweitälteste, seit ihrer Gründung ohne Unterbrechung arbeitende [Universität] nach der [Ruprecht-Karls-Universität Heidelberg] (1386).";
         };
 
         $scope.english = function() {
+        	$scope.show = false;
             $scope.userInput = "[Leipzig University] (German: Universität Leipzig), located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel] laureates are associated with this university.";
         };
 
         $scope.chinese = function() {
+        	$scope.show = false;
             $scope.userInput = "[北京] 和 [上海] 分别是 [中国] 的政治和经济中心.";
         };
 
         $scope.englishUnanotated = function() {
+       	 	$scope.show = false;
             $scope.userInput = "Leipzig University (German: Universität Leipzig), located in Leipzig in the Free State of Saxony, Germany, is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in Germany. Famous alumni include Leibniz, Goethe, Nietzsche, Wagner, Angela Merkel, Raila Odinga, Tycho Brahe and nine Nobel laureates are associated with this university.";
         };
     }
