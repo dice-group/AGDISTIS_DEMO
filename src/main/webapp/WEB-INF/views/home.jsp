@@ -1,4 +1,5 @@
 <html ng-app="AgdistisService">
+<%@ page pageEncoding="UTF-8" %>
 <meta charset="utf-8">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="/demo/resources/css/bootstrap.min.css">
@@ -73,7 +74,7 @@
 					<li><a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/AxelNgonga.html">Dr. Axel-C. Ngonga Ngomo</a></li>
 					<li>Andreas Both</li>
 					<li>Sandro Coelho</li>
-					<li>Prof. Dr. S�ren Auer</li>
+					<li>Prof. Dr. Sören Auer</li>
 					<li>Daniel Gerber</li>
 				</ul>
 				Furthermore, we thank Maximilian Speicher, Lars Wesemann and Dave Boden.
@@ -81,22 +82,50 @@
 				If you want to cite this publication please use the Bibtex below:
 				<pre>
 @incollection{AGDISTIS,
- author = {Usbeck, Ricardo and {Ngonga Ngomo}, Axel-Cyrille and Michael, R�der and Auer, S�ren and Gerber, Daniel and Both, Andreas},
+ author = {Usbeck, Ricardo and {Ngonga Ngomo}, Axel-Cyrille and Michael, Röder and Auer, Sören and Gerber, Daniel and Both, Andreas},
  booktitle = {International Semantic Web Conference },
  title = {AGDISTIS - Agnostic Disambiguation of Named Entities Using Linked  Open Data},
  year = 2014
 }</pre>
 				<h3>Where is AGDISTIS used?</h3>
-				Temporarily, we know our approach is used in:
 				<ul>
 					<li><a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/Projects/REX.html">REX: Web-Scale Extension of RDF Knowledge Bases</a></li>
 					<li><a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/Projects/FOX.html">FOX: Federated knOwledge eXtraction Framework</a></li>
 				</ul>
+				Please let us know if you are using AGDISTIS. You can contact us <a style="color: rgb(26, 13, 171)" href="mailto:ngonga@informatik.uni-leipzig.de">here</a>.
 			</div>
 		</div>
-		<div id="tabs-3">Use from java</div>
-		<div id="tabs-4">Use from commandline</div>
-	</div>
-	<script src="/demo/resources/js/scripts/agdistis.js" charset="UTF-8"></script>
+		<div id="tabs-3">
+			Use from java
+			<div class="text">
+				For running AGDISTIS on your machine go to the root directory and of AGDISTIS and execute
+				<pre>mvn tomcat:run </pre>
+				Now a webservice is running on localhost:8080. <br> <br> 
+				The easiest way of running AGDISTIS from source is to have a look at the Java Class <a style="color: rgb(26, 13, 171)" href="https://github.com/AKSW/AGDISTIS/blob/master/src/test/java/AGDISTISTest.java">/src/test/java/AGDISTISTest.java</a>.
+				<br> We hope you will enjoy using AGDISTIS!
+			</div>
+		</div>
+		<div id="tabs-4">
+			Use from commandline
+			<div class="text">
+				We deployed AGDISTIS as a RESTful service reachable via the following command:
+				<pre>curl --data-urlencode "text='The &lt;entity&gt;University of Leipzig&lt;/entity&gt; in &lt;entity&gt;Barack Obama&lt;/entity&gt;.'"\
+				 -d type='agdistis' http://139.18.2.164:8080/AGDISTIS</pre>
+				or
+				<pre>curl --data-urlencode "text@test.txt" -d type=agdistis http://139.18.2.164:8080/AGDISTIS</pre>
+
+				AGDISTIS also provides also a Wrapper for DBpedia Spotlight. Just change the "type" to "spotlight" instead of "agdistis" Please note that every entity you need disambiguated must be recognized
+				beforehand. <br> Chinese endpoint:
+
+				<pre>curl --data-urlencode "text='&lt;entity&gt;北京&lt;/entity&gt; 和 &lt;entity&gt;上海&lt;/entity&gt; 分别是 &lt;entity&gt;中国&lt;/entity&gt; 的政治和经济中心.'"\
+				 -d type='agdistis' http://139.18.2.164:8080/AGDISTIS_ZH</pre>
+
+				German endpoint:
+
+				<pre>curl --data-urlencode "text='Die Stadt &lt;entity&gt;Dresden&lt;/entity&gt; liegt in &lt;entity&gt;Sachsen&lt;/entity&gt;.'" \
+				-d type='agdistis' http://139.18.2.164:8080/AGDISTIS_DE</pre>
+			</div>
+		</div>
+		<script src="/demo/resources/js/scripts/agdistis.js" charset="UTF-8"></script>
 </body>
 </html>
