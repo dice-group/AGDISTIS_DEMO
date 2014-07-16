@@ -1,12 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Lobster);
-@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic);
+
+@import
+	url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic)
+	;
 
 * {
 	/*-webkit-user-select: none;
 	-moz-user-select: -moz-none;
 	-ms-user-select: none;
 	*/
-
 	/* Rules below not implemented in browsers yet
 	-o-user-select: none;
 	user-select: none;
@@ -47,7 +49,6 @@ textarea {
 	-webkit-user-select: auto; /* Chrome/Safari */
 	-moz-user-select: text; /* Firefox */
 	-ms-user-select: auto; /* IE10+ */
-
 	/* Rules below not implemented in browsers yet */
 	-o-user-select: auto;
 	user-select: auto;
@@ -90,11 +91,9 @@ textarea {
 	-webkit-user-select: auto; /* Chrome/Safari */
 	-moz-user-select: text; /* Firefox */
 	-ms-user-select: auto; /* IE10+ */
-
 	/* Rules below not implemented in browsers yet */
 	-o-user-select: auto;
 	user-select: auto;
-
 	padding-bottom: 20px;
 	width: 100%;
 }
@@ -103,11 +102,9 @@ textarea {
 	-webkit-user-select: auto; /* Chrome/Safari */
 	-moz-user-select: auto; /* Firefox */
 	-ms-user-select: auto; /* IE10+ */
-
 	/* Rules below not implemented in browsers yet */
 	-o-user-select: auto;
 	user-select: auto;
-
 	cursor: pointer;
 }
 
@@ -137,7 +134,6 @@ textarea {
 	-moz-border-radius: 15px;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
-
 	background-color: #fff;
 	border: 1px #eee solid;
 	font-size: 10pt;
@@ -151,7 +147,6 @@ textarea {
 	-moz-border-radius: 15px;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
-
 	background-color: #fff;
 	border: 1px #eee solid;
 	font-size: 10pt;
@@ -181,6 +176,15 @@ textarea {
 	text-align: center;
 }
 
+.text {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 15px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	padding: 0 10px 0 10px;
+}
+
 .ui-icon-circle-close {
 	cursor: pointer;
 	margin-right: 3px;
@@ -196,14 +200,17 @@ span.multiple_candidate_label {
 	color: #000000;
 	background-color: #FFDD00;
 }
+
 span.single_candidate_label {
 	color: #000000;
 	background-color: lightgreen;
 }
+
 span.no_candidates_label {
 	color: #000000;
 	background-color: #FF6A6A;
 }
+
 span.user_decided {
 	color: #000000;
 	background-color: lightblue;

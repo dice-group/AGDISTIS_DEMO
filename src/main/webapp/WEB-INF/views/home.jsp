@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="/demo/resources/css/main.css">
 <script src="/demo/resources/js/jquery-1.11.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.min.js"></script>
+<script src="/demo/resources/js/angular.min.js"></script>
+<script src="/demo/resources/js/angular-resource.min.js"></script>
 <script src="/demo/resources/js/bootstrap.min.js"></script>
 <script>
 	$(function() {
@@ -15,7 +15,7 @@
 		$("#accordion").accordion({
 			collapsible : true,
 			heightStyle : "content",
-			autoHeight: false,
+			autoHeight : false,
 			active : false
 		});
 	});
@@ -27,7 +27,7 @@
 	<div id="tabs">
 		<ul>
 			<li><a href="#tabs-1">Demo</a></li>
-			<li><a href="#tabs-2">Documentation</a></li>
+			<li><a href="#tabs-2">About</a></li>
 			<li><a href="#tabs-3">Java Usage</a></li>
 			<li><a href="#tabs-4">Command Line Usage</a></li>
 		</ul>
@@ -61,9 +61,38 @@
 			</div>
 		</div>
 		<div id="tabs-2">
-			<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et
-				lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis
-				aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+			<div class="text">
+				<h3>What is AGDISTIS?</h3>
+				AGDISTIS is an Open Source Named Entity Disambiguation Framework able to link entities against every Linked Data knowledge base.
+				<h3>Where can I learn more about AGDISTIS?</h3>
+				To learn more about AGDISTIS visit our <a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/Projects/AGDISTIS.html">project homepage</a>.
+				<h3>Who maintains AGDISTIS?</h3>
+				We are a big team of maintainers:
+				<ul>
+					<li><a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/RicardoUsbeck.html">Ricardo Usbeck (Principle Contact / Maintainer)</a></li>
+					<li><a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/AxelNgonga.html">Dr. Axel-C. Ngonga Ngomo</a></li>
+					<li>Andreas Both</li>
+					<li>Sandro Coelho</li>
+					<li>Prof. Dr. Sören Auer</li>
+					<li>Daniel Gerber</li>
+				</ul>
+				Furthermore, we thank Maximilian Speicher, Lars Wesemann and Dave Boden.
+				<h3>How to cite AGDISTIS?</h3>
+				If you want to cite this publication please use the Bibtex below:
+				<pre>
+@incollection{AGDISTIS,
+ author = {Usbeck, Ricardo and {Ngonga Ngomo}, Axel-Cyrille and Michael, Röder and Auer, Sören and Gerber, Daniel and Both, Andreas},
+ booktitle = {International Semantic Web Conference },
+ title = {AGDISTIS - Agnostic Disambiguation of Named Entities Using Linked  Open Data},
+ year = 2014
+}</pre>
+				<h3>Where is AGDISTIS used?</h3>
+				Temporarily, we know our approach is used in:
+				<ul>
+					<li><a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/Projects/REX.html">REX: Web-Scale Extension of RDF Knowledge Bases</a></li>
+					<li><a target="_blank" style="color: rgb(26, 13, 171)" href="http://aksw.org/Projects/FOX.html">FOX: Federated knOwledge eXtraction Framework</a></li>
+				</ul>
+			</div>
 		</div>
 		<div id="tabs-3">Use from java</div>
 		<div id="tabs-4">Use from commandline</div>
