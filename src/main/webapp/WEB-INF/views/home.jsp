@@ -35,7 +35,7 @@
 					<button type="button" class="btn btn-default navbar-btn" ng-click="englishUnanotated()">English unannotated</button>
 				</div>
 				<div class="innerContainer">
-					<span>Mark the entities with brackets</span>
+					<span>Mark the entities with square brackets.</span>
 					<form name="userInputForm" method="POST" action="/agdistis/agdistis">
 						<textarea name="text" id="text" class="form-control" rows=12 ng-model="userInput"></textarea>
 					</form>
@@ -48,7 +48,7 @@
 					<button type="button" class="btn btn-default" ng-click="foxit()">Annotate (english only)</button>
 					<button ng-show="show" ng-click="dowloadInput()" class="btn btn-default">Download</button>
 				</div>
-				<div ng-show="notSupported" class="entityContainer">Language "{{detectedlanguage}}" not supported</div>
+				<div ng-show="notSupported" class="entityContainer">Language "{{detectedlanguage}}" not supported!</div>
 				<div ng-show="show" class="entityContainer">
 					<!--<pre id="named-entities">{{namedEntities | json}}</pre>-->
 					<pre id="named-entities"></pre>
