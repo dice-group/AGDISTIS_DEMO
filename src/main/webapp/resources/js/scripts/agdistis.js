@@ -7,7 +7,7 @@ myApp.factory('foxit', function($resource) {
 });
 myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
     function($scope, agdistis, foxit) {
-        $scope.userInput = "University of Leipzig is in Leipzig";
+        $scope.userInput = "[Leipzig University] (German: Universität Leipzig), located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel] laureates are associated with this university.";
         $scope.input = function() {
             $scope.show = false;
             $scope.notSupported = false;
