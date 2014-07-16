@@ -29,8 +29,9 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
                     
                     for (var i=0; i<entities.length; ++i) {
                     	var ne = entities[i].namedEntity;
-                    	var coloredAT = $("#annotated-text").html().replace("[" + ne + "]", "<span style=\"color:" + colorPallet[i%9] + "\">[" + ne + "]</span>");
-                    	var coloredPre = $("#named-entities").html().replace("\"" + ne + "\"", "<span style=\"color:" + colorPallet[i%9] + "\">\"" + ne + "\"</span>");
+                    	var url = entities[i].disambiguatedURL;
+                    	var coloredAT = $("#annotated-text").html().replace("[" + ne + "]", "<span title="+url+" style=\"color:" + colorPallet[i%9] + "\">[" + ne + "]</span>");
+                    	var coloredPre = $("#named-entities").html().replace("\"" + ne + "\"", "<span title="+url+" style=\"color:" + colorPallet[i%9] + "\">\"" + ne + "\"</span>");
                     	
                     	$("#annotated-text").html(coloredAT);
                     	$("#named-entities").html(coloredPre);

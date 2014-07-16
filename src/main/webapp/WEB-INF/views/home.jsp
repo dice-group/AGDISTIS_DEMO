@@ -36,8 +36,8 @@
 				<div class="navbar navbar-default" role="navigation">
 					<button type="button" class="btn btn-default navbar-btn" ng-click="german()">German Example</button>
 					<button type="button" class="btn btn-default navbar-btn" ng-click="english()">English Example</button>
-					<button type="button" class="btn btn-default navbar-btn" ng-click="chinese()">Chinese Example</button>
 					<button type="button" class="btn btn-default navbar-btn" ng-click="englishUnanotated()">English unannotated</button>
+					<button type="button" class="btn btn-default navbar-btn" ng-click="chinese()">Chinese Example</button>
 				</div>
 				<div class="innerContainer">
 					<span>Mark the entities with square brackets.</span>
