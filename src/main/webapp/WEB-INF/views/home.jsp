@@ -42,7 +42,7 @@
 				<div class="innerContainer">
 					<span>Mark the entities with square brackets.</span>
 					<form name="userInputForm" method="POST" action="/agdistis/agdistis">
-						<textarea name="text" id="text" class="form-control" rows=12 ng-model="userInput"></textarea>
+						<textarea name="text" id="text" class="form-control" rows="6" ng-model="userInput"></textarea>
 					</form>
 					<em ng-show="show">Annotated Text:</em>
 					<p ng-show="show" id="annotated-text"></p>
