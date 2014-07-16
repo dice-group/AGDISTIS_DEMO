@@ -12,6 +12,12 @@
 <script>
 	$(function() {
 		$("#tabs").tabs();
+		$("#accordion").accordion({
+			collapsible : true,
+			heightStyle : "content",
+			autoHeight: false,
+			active : false
+		});
 	});
 </script>
 </head>
@@ -28,7 +34,6 @@
 		<div id="tabs-1">
 			<div ng-controller="AgdistisCtrl">
 				<div class="navbar navbar-default" role="navigation">
-
 					<button type="button" class="btn btn-default navbar-btn" ng-click="german()">German Example</button>
 					<button type="button" class="btn btn-default navbar-btn" ng-click="english()">English Example</button>
 					<button type="button" class="btn btn-default navbar-btn" ng-click="chinese()">Chinese Example</button>
@@ -40,8 +45,7 @@
 						<textarea name="text" id="text" class="form-control" rows=12 ng-model="userInput"></textarea>
 					</form>
 					<em ng-show="show">Annotated Text:</em>
-					<p ng-show="show" id="annotated-text">
-					</p>
+					<p ng-show="show" id="annotated-text"></p>
 				</div>
 				<div id="buttons">
 					<button type="button" class="btn btn-default" ng-click="input()">Get Entities</button>
@@ -49,7 +53,8 @@
 					<button ng-show="show" ng-click="dowloadInput()" class="btn btn-default">Download</button>
 				</div>
 				<div ng-show="notSupported" class="entityContainer">Language "{{detectedlanguage}}" not supported!</div>
-				<div ng-show="show" class="entityContainer">
+				<div ng-show="show" class="entityContainer" id="accordion">
+					<h3>JSON Result</h3>
 					<!--<pre id="named-entities">{{namedEntities | json}}</pre>-->
 					<pre id="named-entities"></pre>
 				</div>
