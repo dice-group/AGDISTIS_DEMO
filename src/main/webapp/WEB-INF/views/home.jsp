@@ -1,14 +1,14 @@
 <html ng-app="AgdistisService">
 <meta charset="utf-8">
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="/demo/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="./resources/css/main.css">
-<script src="./resources/js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="/demo/resources/css/main.css">
+<script src="/demo/resources/js/jquery-1.11.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.min.js"></script>
-<script src="./resources/js/bootstrap.min.js"></script>
+<script src="/demo/resources/js/bootstrap.min.js"></script>
 <script>
 	$(function() {
 		$("#tabs").tabs();
@@ -63,6 +63,6 @@
 		<div id="tabs-3">Use from java</div>
 		<div id="tabs-4">Use from commandline</div>
 	</div>
-	<script src="resources/js/scripts/agdistis.js" charset="UTF-8"></script>
+	<script src="/demo/resources/js/scripts/agdistis.js" charset="UTF-8"></script>
 </body>
 </html>
