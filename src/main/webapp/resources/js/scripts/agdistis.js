@@ -7,7 +7,7 @@ myApp.factory('foxit', function($resource) {
 });
 myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
     function($scope, agdistis, foxit) {
-        $scope.userInput = "[Leipzig University] (German: Universität Leipzig), located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel] laureates are associated with this university.";
+        $scope.userInput = "[Leipzig University] (German: Universität Leipzig), located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel laureates] are associated with this university.";
         $scope.input = function() {
             $scope.show = false;
             $scope.notSupported = false;
@@ -30,7 +30,7 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
                     for (var i=0; i<entities.length; ++i) {
                     	var ne = entities[i].namedEntity;
                     	var url = entities[i].disambiguatedURL;
-                    	var coloredAT = $("#annotated-text").html().replace("[" + ne + "]", "<span title="+url+" style=\"color:" + colorPallet[i%9] + "\">[" + ne + "]</span>");
+                    	var coloredAT = $("#annotated-text").html().replace("[" + ne + "]", "<a target=\"_blank\" href="+url+" title="+url+" style=\"color:" + colorPallet[i%9] + "\">[" + ne + "]</a>");
                     	var coloredPre = $("#named-entities").html().replace("\"" + ne + "\"", "<span title="+url+" style=\"color:" + colorPallet[i%9] + "\">\"" + ne + "\"</span>");
                     	
                     	$("#annotated-text").html(coloredAT);
@@ -82,7 +82,7 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
 
         $scope.english = function() {
         	$scope.show = false;
-            $scope.userInput = "[Leipzig University] (German: Universität Leipzig), located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel] laureates are associated with this university.";
+            $scope.userInput = "[Leipzig University] (German: Universität Leipzig), located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel laureates] are associated with this university.";
         };
 
         $scope.chinese = function() {
