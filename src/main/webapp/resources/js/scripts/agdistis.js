@@ -1,9 +1,9 @@
 var myApp = angular.module('AgdistisService', ['ngResource']);
 myApp.factory('agdistis', function($resource) {
-    return $resource('agdistis');
+    return $resource('/demo/agdistis');
 });
 myApp.factory('foxit', function($resource) {
-    return $resource('foxit');
+    return $resource('/demo/foxit');
 });
 myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
     function($scope, agdistis, foxit) {
