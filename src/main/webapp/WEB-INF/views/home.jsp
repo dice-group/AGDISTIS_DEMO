@@ -23,8 +23,11 @@
 </script>
 </head>
 <body>
-	<h1>AGDISTIS - Multilingual Disambiguation of Named Entities Using Linked Data</h1>
-
+	<div class="headerbox">
+		<img class="headerimg" height="120px" src="/demo/resources/img/logo.png" alt="AGDISTIS Logo"  >
+		<h1>AGDISTIS</h1>
+		<h3>Multilingual Disambiguation of Named Entities Using Linked Data</h3>
+	</div>
 	<div id="tabs">
 		<ul>
 			<li><a href="#tabs-1">Demo</a></li>
@@ -35,10 +38,10 @@
 		<div id="tabs-1">
 			<div ng-controller="AgdistisCtrl">
 				<div class="navbar navbar-default" role="navigation">
-					<button type="button" class="btn btn-default navbar-btn" ng-click="german()">German Example</button>
-					<button type="button" class="btn btn-default navbar-btn" ng-click="english()">English Example</button>
-					<button type="button" class="btn btn-default navbar-btn" ng-click="englishUnanotated()">English unannotated</button>
-					<button type="button" class="btn btn-default navbar-btn" ng-click="chinese()">Chinese Example</button>
+					<button type="button" class="buttonStyle btn btn-default navbar-btn" ng-click="german()">German Example</button>
+					<button type="button" class="buttonStyle btn btn-default navbar-btn" ng-click="english()">English Example</button>
+					<button type="button" class="buttonStyle btn btn-default navbar-btn" ng-click="englishUnanotated()">English unannotated</button>
+					<button type="button" class="buttonStyle btn btn-default navbar-btn" ng-click="chinese()">Chinese Example</button>
 				</div>
 				<div class="innerContainer">
 					<span>Mark the entities with square brackets.</span>
@@ -49,9 +52,9 @@
 					<p ng-show="show" id="annotated-text"></p>
 				</div>
 				<div id="buttons">
-					<button type="button" class="btn btn-default" ng-click="input()">Get Entities</button>
-					<button type="button" class="btn btn-default" ng-click="foxit()">Annotate (english only)</button>
-					<button ng-show="show" ng-click="dowloadInput()" class="btn btn-default">Download</button>
+					<button type="button" class="buttonStyle btn btn-default" ng-click="input()">Get Entities</button>
+					<button type="button" class="buttonStyle btn btn-default" ng-click="foxit()">Annotate (english only)</button>
+					<button ng-show="show" ng-click="dowloadInput()" class="buttonStyle btn btn-default">Download</button>
 				</div>
 				<div ng-show="notSupported" class="entityContainer">Language "{{detectedlanguage}}" not supported!</div>
 				<div ng-show="show" class="entityContainer" id="accordion">
