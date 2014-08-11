@@ -53,7 +53,7 @@
 				</div>
 				<div id="buttons">
 					<button type="button" class="buttonStyle btn btn-default" ng-click="input()">Get Entities</button>
-					<button type="button" class="buttonStyle btn btn-default" ng-click="foxit()">Annotate (english only)</button>
+					<button type="button" class="buttonStyle btn btn-default" ng-click="foxit()" ng-show="showAnnotateButton"> Annotate (english only)</button>
 					<button ng-show="show" ng-click="dowloadInput()" class="buttonStyle btn btn-default">Download</button>
 				</div>
 				<div ng-show="notSupported" class="entityContainer">Language "{{detectedlanguage}}" not supported!</div>

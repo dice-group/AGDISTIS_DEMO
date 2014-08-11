@@ -65,6 +65,7 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
         };
 
         $scope.foxit = function() {
+       	 	$scope.showAnnotateButton = false;
             $scope.show = false;
             $scope.notSupported = false;
             foxit.save({
@@ -77,21 +78,25 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
 
         $scope.german = function() {
         	$scope.show = false;
+       	 	$scope.showAnnotateButton = false;
             $scope.userInput = "Die [Universität Leipzig] – Alma Mater Lipsiensis (AML) – ist die größte [Hochschule] in [Leipzig]. Mit ihrem Gründungsjahr 1409 ist sie auf dem Gebiet der heutigen [Bundesrepublik Deutschland] die zweitälteste, seit ihrer Gründung ohne Unterbrechung arbeitende [Universität] nach der [Ruprecht-Karls-Universität Heidelberg] (1386).";
         };
 
         $scope.english = function() {
         	$scope.show = false;
+       	 	$scope.showAnnotateButton = false;
             $scope.userInput = "[Leipzig University] (German: Universität Leipzig), located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel laureates] are associated with this university.";
         };
 
         $scope.chinese = function() {
         	$scope.show = false;
+       	 	$scope.showAnnotateButton = false;
             $scope.userInput = "[北京] 和 [上海] 分别是 [中国] 的政治和经济中心.";
         };
 
         $scope.englishUnanotated = function() {
        	 	$scope.show = false;
+       	 	$scope.showAnnotateButton = true;
             $scope.userInput = "Leipzig University (German: Universität Leipzig), located in Leipzig in the Free State of Saxony, Germany, is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in Germany. Famous alumni include Leibniz, Goethe, Nietzsche, Wagner, Angela Merkel, Raila Odinga, Tycho Brahe and nine Nobel laureates are associated with this university.";
         };
     }
