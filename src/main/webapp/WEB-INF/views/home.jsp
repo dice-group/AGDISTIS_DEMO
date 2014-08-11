@@ -112,7 +112,7 @@
 			Use from commandline
 			<div class="text">
 				We deployed AGDISTIS as a RESTful service reachable via the following command:
-				<pre>curl --data-urlencode "text='The &lt;entity&gt;University of Leipzig&lt;/entity&gt; in &lt;entity&gt;Barack Obama&lt;/entity&gt;.'"\
+				<pre>curl --data-urlencode "text='&lt;entity&gt;Barack Obama&lt;/entity&gt; arrives in &lt;entity&gt;Washington, D.C.&lt;/entity&gt;.'"\
 				 -d type='agdistis' http://139.18.2.164:8080/AGDISTIS</pre>
 				or
 				<pre>curl --data-urlencode "text@test.txt" -d type=agdistis http://139.18.2.164:8080/AGDISTIS</pre>
