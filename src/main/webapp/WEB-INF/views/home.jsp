@@ -2,14 +2,14 @@
 <%@ page pageEncoding="UTF-8" %>
 <meta charset="utf-8">
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="/demo/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/demo/resources/css/main.css">
-<script src="/demo/resources/js/jquery-1.11.1.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<script src="/demo/resources/js/angular.min.js"></script>
-<script src="/demo/resources/js/angular-resource.min.js"></script>
-<script src="/demo/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/agdistis/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/agdistis/resources/css/main.css">
+<script src="/agdistis/resources/js/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="/agdistis/resources/js/angular.min.js"></script>
+<script src="/agdistis/resources/js/angular-resource.min.js"></script>
+<script src="/agdistis/resources/js/bootstrap.min.js"></script>
 <script>
 	$(function() {
 		$("#tabs").tabs();
@@ -24,7 +24,7 @@
 </head>
 <body>
 	<div class="headerbox">
-		<img class="headerimg" height="120px" src="/demo/resources/img/logo.png" alt="AGDISTIS Logo"  >
+		<img class="headerimg" height="120px" src="/agdistis/resources/img/logo.png" alt="AGDISTIS Logo"  >
 		<h1>AGDISTIS</h1>
 		<h3>Multilingual Disambiguation of Named Entities Using Linked Data</h3>
 	</div>
@@ -129,6 +129,6 @@
 				-d type='agdistis' http://139.18.2.164:8080/AGDISTIS_DE</pre>
 			</div>
 		</div>
-		<script src="/demo/resources/js/scripts/agdistis.js" charset="UTF-8"></script>
+		<script src="/agdistis/resources/js/scripts/agdistis.js" charset="UTF-8"></script>
 </body>
 </html>

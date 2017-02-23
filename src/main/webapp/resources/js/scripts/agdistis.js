@@ -1,9 +1,9 @@
 var myApp = angular.module('AgdistisService', ['ngResource']);
 myApp.factory('agdistis', function($resource) {
-    return $resource('/demo/agdistis');
+    return $resource('/agdistis/agdistis');
 });
 myApp.factory('foxit', function($resource) {
-    return $resource('/demo/foxit');
+    return $resource('/agdistis/foxit');
 });
 myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
     function($scope, agdistis, foxit) {
@@ -23,6 +23,7 @@ myApp.controller('AgdistisCtrl', ['$scope', 'agdistis', 'foxit',
                     $("#annotated-text").html($scope.userInput);
                     $("#named-entities").html(JSON.stringify(data, undefined, 2));
                     $("#accordion").accordion("refresh");
+                    
                     
                     var entities = data.namedEntities;
                     var colorPallet = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6'];
