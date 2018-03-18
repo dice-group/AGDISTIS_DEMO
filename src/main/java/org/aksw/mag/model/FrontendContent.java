@@ -1,4 +1,4 @@
-package org.aksw.agdistis.model;
+package org.aksw.mag.model;
 
 import java.util.Arrays;
 
@@ -6,6 +6,7 @@ public class FrontendContent {
 
 	private String text;
 	private String[] entities;
+	private String knowledgeBase;
 
 	public String getText() {
 		return text;
@@ -56,10 +57,20 @@ public class FrontendContent {
 		StringBuilder builder = new StringBuilder();
 		builder.append("FrontendContent [text=");
 		builder.append(text);
+		builder.append(", knowledgeBase=");
+		builder.append(knowledgeBase);
 		builder.append(", entities=");
 		builder.append(Arrays.toString(entities));
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public String getKnowledgeBase() {
+		return knowledgeBase;
+	}
+
+	public void setKnowledgeBase(String knowledgeBase) {
+		this.knowledgeBase = knowledgeBase;
 	}
 
 }

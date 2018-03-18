@@ -1,17 +1,17 @@
-package org.aksw.agdistis.model;
+package org.aksw.mag.model;
 
 import java.util.List;
 
 public class Result {
 
-	private List<AgdistisEntity> namedEntities;
+	private List<MagEntity> namedEntities;
 	private String detectedLanguage;
 
-	public List<AgdistisEntity> getNamedEntities() {
+	public List<MagEntity> getNamedEntities() {
 		return namedEntities;
 	}
 
-	public void setNamedEntities(List<AgdistisEntity> namedEntities) {
+	public void setNamedEntities(List<MagEntity> namedEntities) {
 		this.namedEntities = namedEntities;
 	}
 

@@ -1,4 +1,4 @@
-package org.aksw.agdistis.fox;
+package org.aksw.mag.fox;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -11,7 +11,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.List;
 
-import org.aksw.agdistis.model.NamedEntity;
+import org.aksw.mag.model.NamedEntity;
 
 public abstract class ASpotter {
 	public abstract List<NamedEntity> getEntities(String question);

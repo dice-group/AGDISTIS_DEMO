@@ -1,6 +1,6 @@
-package org.aksw.agdistis.model;
+package org.aksw.mag.model;
 
-public class AgdistisEntity implements Comparable<AgdistisEntity> {
+public class MagEntity implements Comparable<MagEntity> {
 
 	private String namedEntity;
 	private int start;
@@ -8,11 +8,11 @@ public class AgdistisEntity implements Comparable<AgdistisEntity> {
 	private int offset = -1;
 	private String disambiguatedURL;
 
-	public AgdistisEntity() {
+	public MagEntity() {
 
 	}
 
-	public AgdistisEntity(AgdistisEntity n) {
+	public MagEntity(MagEntity n) {
 		this.namedEntity = n.getNamedEntity();
 		this.start = n.getStart();
 		this.end = n.getEnd();
@@ -23,7 +23,7 @@ public class AgdistisEntity implements Comparable<AgdistisEntity> {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("AgdistisEntity [namedEntity=");
+		builder.append("MagEntity [namedEntity=");
 		builder.append(namedEntity);
 		builder.append(", start=");
 		builder.append(start);
@@ -57,7 +57,7 @@ public class AgdistisEntity implements Comparable<AgdistisEntity> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AgdistisEntity other = (AgdistisEntity) obj;
+		MagEntity other = (MagEntity) obj;
 		if (disambiguatedURL == null) {
 			if (other.disambiguatedURL != null)
 				return false;
@@ -118,7 +118,7 @@ public class AgdistisEntity implements Comparable<AgdistisEntity> {
 	}
 
 	@Override
-	public int compareTo(AgdistisEntity o) {
+	public int compareTo(MagEntity o) {
 		if (this.start < o.start) {
 			return -1;
 		} else if (this.start > o.start) {

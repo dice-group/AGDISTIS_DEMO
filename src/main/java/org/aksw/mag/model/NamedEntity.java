@@ -1,4 +1,4 @@
-package org.aksw.agdistis.model;
+package org.aksw.mag.model;
 
 import java.util.Arrays;
 

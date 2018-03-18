@@ -1,4 +1,4 @@
-package org.aksw.agdistis;
+package org.aksw.mag;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.aksw.agdistis.fox.Fox;
-import org.aksw.agdistis.model.AgdistisEntity;
-import org.aksw.agdistis.model.FrontendContent;
-import org.aksw.agdistis.model.NamedEntity;
-import org.aksw.agdistis.model.Result;
+import org.aksw.mag.fox.Fox;
+import org.aksw.mag.model.FrontendContent;
+import org.aksw.mag.model.MagEntity;
+import org.aksw.mag.model.NamedEntity;
+import org.aksw.mag.model.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -72,9 +72,9 @@ public class HomeController {
 	 * @throws RestClientException
 	 * @throws LangDetectException
 	 */
-	@RequestMapping(value = "/agdistis", method = RequestMethod.POST)
+	@RequestMapping(value = "/mag", method = RequestMethod.POST)
 	@ResponseBody
-	public Result agdistisEndpoint(Locale locale, Model model, @RequestBody FrontendContent frontendContent)
+	public Result magEndpoint(Locale locale, Model model, @RequestBody FrontendContent frontendContent)
 			throws LangDetectException {
 		logger.info("from Frontend to agdistis {}.", frontendContent);
 		Result result = new Result();
@@ -83,14 +83,37 @@ public class HomeController {
 		String detectedLanguage = detectLanguage(frontendContent.getText());
 		logger.debug("language: {}", detectedLanguage);
 		String textToSend = extracted(frontendContent);
-		String url = "http://139.18.2.164:8080/";
-		if (detectedLanguage.equals("de")) {
-			url += "AGDISTIS_DE";
-		} else if (detectedLanguage.equals("en")) {
-			url += "AGDISTIS";
-		} else if (detectedLanguage.equals("zh-cn") || detectedLanguage.equals("zh-tw")
-				|| detectedLanguage.equals("ko")) {
-			url += "AGDISTIS_ZH";
+		String knowledgeBase = frontendContent.getKnowledgeBase();
+		//System.out.println(knowledgeBase);
+		String url = "http://akswnc9.informatik.uni-leipzig.de:";
+		
+//		if (detectedLanguage.equals("en")) {
+//			url += "8113/AGDISTIS";
+//		} else 
+			
+			if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("en")) {
+			url += "8113/AGDISTIS";
+			// url = "http://localhost:8080/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("de")) {
+			url += "8114/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("es")) {
+			url += "8115/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("fr")) {
+			url += "8116/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("it")) {
+			url += "8117/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("ja")) {
+			url += "8118/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("nl")) {
+			url += "8119/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("pt")) {
+			url = "http://localhost:8090/AGDISTIS";
+		} else if (knowledgeBase.equals("wikidata") && detectedLanguage.equals("en") || detectedLanguage.equals("tr")) {
+			url = "http://localhost:8080/AGDISTIS";
+		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("zh-cn")
+				|| detectedLanguage.equals("zh-tw") || detectedLanguage.equals("ko")) {
+			url = "http://139.18.2.164:8080/AGDISTIS_ZH";
+			// url += "AGDISTIS_ZH";
 		} else {
 			result.setDetectedLanguage(detectedLanguage + " not supported");
 			return result;
@@ -98,12 +121,12 @@ public class HomeController {
 
 		textToSend = "text='" + textToSend + "'&type=agdistis";
 		logger.info("to Agdistis: {}", textToSend);
-		AgdistisEntity[] agdistisResult = sendRequest(textToSend, url);
-		for (AgdistisEntity n : agdistisResult) {
+		MagEntity[] magResult = sendRequest(textToSend, url);
+		for (MagEntity n : magResult) {
 			n.setEnd(n.getStart() + n.getOffset());
 		}
 		result.setDetectedLanguage(detectedLanguage);
-		result.setNamedEntities(Lists.newArrayList(agdistisResult));
+		result.setNamedEntities(Lists.newArrayList(magResult));
 		return result;
 	}
 
@@ -170,7 +193,7 @@ public class HomeController {
 		return text;
 	}
 
-	private AgdistisEntity[] sendRequest(String text, String u) {
+	private MagEntity[] sendRequest(String text, String u) {
 		RestTemplate rest = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.valueOf("application/x-www-form-urlencoded;charset=UTF-8"));
@@ -178,7 +201,7 @@ public class HomeController {
 		HttpEntity<String> entity = new HttpEntity<String>(text, headers);
 		ResponseEntity<String> postForO = rest.postForEntity(u, entity, String.class);
 		logger.info("from Agdistis: {}", postForO.getBody());
-		return gson.fromJson(postForO.getBody(), AgdistisEntity[].class);
+		return gson.fromJson(postForO.getBody(), MagEntity[].class);
 	}
 
 	private String detectLanguage(String text) throws LangDetectException {

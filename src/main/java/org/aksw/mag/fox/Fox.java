@@ -1,4 +1,4 @@
-package org.aksw.agdistis.fox;
+package org.aksw.mag.fox;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -9,8 +9,8 @@ import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 
-import org.aksw.agdistis.model.NamedEntity;
-import org.aksw.agdistis.utils.Utils;
+import org.aksw.mag.model.NamedEntity;
+import org.aksw.mag.utils.Utils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -51,7 +51,7 @@ public class Fox extends ASpotter {
 
 			JSONParser parser = new JSONParser();
 			JSONObject jsonArray = (JSONObject) parser.parse(foxJSONOutput);
-			String output = URLDecoder.decode((String) jsonArray.get("output"), "UTF-8");
+			String output = URLDecoder.decode((String) ((JSONObject) jsonArray).get("output"), "UTF-8");
 			log.info("From Fox: {}", output);
 			String baseURI = "http://dbpedia.org";
 			Model model = ModelFactory.createDefaultModel();

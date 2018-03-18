@@ -1,4 +1,4 @@
-package org.aksw.agdistis.utils;
+package org.aksw.mag.utils;
 
 import java.util.List;
 
