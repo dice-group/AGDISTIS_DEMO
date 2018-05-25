@@ -8,7 +8,7 @@ myApp.factory('foxit', function($resource) {
 myApp.controller('MagCtrl', ['$scope', 'mag', 'foxit',
     function($scope, mag, foxit) {
         $scope.userInput = "[Leipzig University] located in [Leipzig] in the Free State of [Saxony, Germany], is one of the oldest universities in the world and the second-oldest university (by consecutive years of existence) in [Germany]. Famous alumni include [Leibniz], [Goethe], [Nietzsche], [Wagner], [Angela Merkel], [Raila Odinga], [Tycho Brahe] and nine [Nobel laureates] are associated with this university.";
-        $scope.knowledgeBase = "";
+        $scope.knowledgeBase = "dbpedia";
         $scope.input = function() {
             $scope.show = false;
             $scope.notSupported = false;
