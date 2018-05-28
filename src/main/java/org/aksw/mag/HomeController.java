@@ -107,9 +107,9 @@ public class HomeController {
 		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("nl")) {
 			url += "8119/AGDISTIS";
 		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("pt")) {
-			url = "http://localhost:8090/AGDISTIS";
-		} else if (knowledgeBase.equals("wikidata") && detectedLanguage.equals("en") || detectedLanguage.equals("tr")) {
-			url = "http://localhost:8080/AGDISTIS";
+			url += "8220/AGDISTIS";
+		} else if (knowledgeBase.equals("wikidata") && detectedLanguage.equals("en") || detectedLanguage.equals("tr") || detectedLanguage.equals("id") || detectedLanguage.equals("sv")) {
+			url += "8221/AGDISTIS";
 		} else if (knowledgeBase.equals("dbpedia") && detectedLanguage.equals("zh-cn")
 				|| detectedLanguage.equals("zh-tw") || detectedLanguage.equals("ko")) {
 			url = "http://139.18.2.164:8080/AGDISTIS_ZH";
