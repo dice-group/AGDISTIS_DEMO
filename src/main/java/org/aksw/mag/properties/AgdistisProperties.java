@@ -20,8 +20,8 @@ public class AgdistisProperties {
 	private String dbpediaTr = "https://agdistis.demos.dice-research.org/api/tr/";
 	private String dbpediaId = "https://agdistis.demos.dice-research.org/api/id/";
 	private String dbpediaSv = "https://agdistis.demos.dice-research.org/api/sv/";
-	private String dbpediaZhCn = "https://agdistis.demos.dice-research.org/api/zh_cn/";
-	private String dbpediaZhTw = "https://agdistis.demos.dice-research.org/api/zh_tw/";
+	private String dbpediaZhCn = "https://agdistis.demos.dice-research.org/api/zh/";
+	private String dbpediaZhTw = "https://agdistis.demos.dice-research.org/api/zh/";
 	private String dbpediaKo = "https://agdistis.demos.dice-research.org/api/ko/";
 	private String wikidataEn = "https://agdistis.demos.dice-research.org/api/en/";
 

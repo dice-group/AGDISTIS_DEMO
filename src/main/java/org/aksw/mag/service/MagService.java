@@ -86,9 +86,9 @@ public class MagService {
 					return agdistisProperties.getDbpediaId();
 				case "sv":
 					return agdistisProperties.getDbpediaSv();
-				case "zh_cn":
+				case "zh-cn":
 					return agdistisProperties.getDbpediaZhCn();
-				case "zh_tw":
+				case "zh-tw":
 					return agdistisProperties.getDbpediaZhTw();
 				case "ko":
 					return agdistisProperties.getDbpediaKo();
