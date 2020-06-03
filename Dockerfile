@@ -1,7 +1,11 @@
 FROM maven:3 AS builder
 
-ADD . /project
 WORKDIR /project
+
+ADD pom.xml /project/pom.xml
+RUN mvn dependency:resolve
+
+ADD . /project
 RUN mvn package
 
 FROM openjdk:8-jdk-alpine as runtime
