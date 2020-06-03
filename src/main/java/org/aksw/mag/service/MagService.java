@@ -80,18 +80,10 @@ public class MagService {
 					return agdistisProperties.getDbpediaNl();
 				case "pt":
 					return agdistisProperties.getDbpediaPt();
-				case "tr":
-					return agdistisProperties.getDbpediaTr();
-				case "id":
-					return agdistisProperties.getDbpediaId();
-				case "sv":
-					return agdistisProperties.getDbpediaSv();
 				case "zh-cn":
 					return agdistisProperties.getDbpediaZhCn();
 				case "zh-tw":
 					return agdistisProperties.getDbpediaZhTw();
-				case "ko":
-					return agdistisProperties.getDbpediaKo();
 				default:
 					throw new IllegalArgumentException(String.format("Language %s not supported for knowledge base %s.", language, knowledgeBase));
 			}
