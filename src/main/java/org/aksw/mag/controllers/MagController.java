@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.aksw.mag.model.MagRequest;
 import org.aksw.mag.model.NamedEntity;
 import org.aksw.mag.model.Result;
+import org.aksw.mag.model.UnsupportedResult;
 import org.aksw.mag.service.LanguageDetectionService;
 import org.aksw.mag.service.MagService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -17,6 +19,20 @@ public class MagController {
 
 	private final LanguageDetectionService languageDetectionService;
 	private final MagService magService;
+
+	@ExceptionHandler(LangDetectException.class)
+	public UnsupportedResult handleLangDetectException(LangDetectException exception) {
+		UnsupportedResult unsupportedResult = new UnsupportedResult();
+		unsupportedResult.setNosup(exception.getMessage());
+		return unsupportedResult;
+	}
+
+	@ExceptionHandler(IllegalArgumentException.class)
+	public UnsupportedResult handleLangDetectException(IllegalArgumentException exception) {
+		UnsupportedResult unsupportedResult = new UnsupportedResult();
+		unsupportedResult.setNosup(exception.getMessage());
+		return unsupportedResult;
+	}
 
 	@PostMapping(value = "/mag")
 	public Result magEndpoint(@RequestBody MagRequest request)
