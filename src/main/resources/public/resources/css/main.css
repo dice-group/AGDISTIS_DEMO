@@ -1,0 +1,257 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
+@import
+	url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic)
+	;
+
+* {
+	/*-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	*/
+	/* Rules below not implemented in browsers yet
+	-o-user-select: none;
+	user-select: none;
+	*/
+	font-family: 'Libre Baskerville', Verdana, sans-serif;
+}
+
+body {
+	background-color: #e7e7e7;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+h1 {
+	font-family: 'Monotype Arial';
+	color: #000000;
+	font-size: 50px;
+	text-align: left;
+	margin-top: 30px;
+	margin-bottom: 25px;
+}
+
+h3 {
+	font-family: 'Monotype Arial';
+	color: #000000;
+	text-align: left;
+	margin-top: 0px;
+}
+
+hr {
+	background-color: #ccc;
+	border: 0;
+	color: #ccc;
+	height: 1px;
+	width: 75%;
+}
+
+label {
+	cursor: pointer;
+}
+
+textarea {
+	border: 1px #666 solid;
+	width: 100%;
+	height: 50px;
+	-webkit-user-select: auto; /* Chrome/Safari */
+	-moz-user-select: text; /* Firefox */
+	-ms-user-select: auto; /* IE10+ */
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: auto;
+	user-select: auto;
+}
+
+#buttons {
+	margin: 20px 0;
+}
+
+#footer {
+	background-color: #fff;
+	border-top: 1px #666 solid;
+	float: left;
+	padding: 20px 0;
+	text-align: center;
+	width: 100%;
+}
+
+#left-sidebar {
+	width: 45%;
+	float: left;
+}
+
+#main-content {
+	width: 30%;
+	float: left;
+}
+
+#outerContainer {
+	float: left;
+	width: 100%;
+}
+
+#right-sidebar {
+	width: 25%;
+	float: left;
+}
+
+#sidebar-content {
+	-webkit-user-select: auto; /* Chrome/Safari */
+	-moz-user-select: text; /* Firefox */
+	-ms-user-select: auto; /* IE10+ */
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: auto;
+	user-select: auto;
+	padding-bottom: 20px;
+	width: 100%;
+}
+
+#sidebar-content span {
+	-webkit-user-select: auto; /* Chrome/Safari */
+	-moz-user-select: auto; /* Firefox */
+	-ms-user-select: auto; /* IE10+ */
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: auto;
+	user-select: auto;
+	cursor: pointer;
+}
+
+#tabs {
+	width: 1000px;
+	margin: 30px auto 10px auto;
+	padding: 20px;
+}
+
+#title {
+	float: left;
+	height: 100px;
+	width: 100%;
+}
+
+.buttonContainer {
+	padding-bottom: 20px;
+	text-align: center;
+	width: 100%;
+}
+.buttonStyle:hover { background: #0c77ab ; color:#FFF; }
+
+.entityDesc {
+	margin-top: 5px;
+}
+
+.entityContainer {
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	background-color: #fff;
+	border: 1px #eee solid;
+	font-size: 10pt;
+	height: auto;
+	margin: 20px 0 0 0;
+	overflow: auto;
+	padding: 10px;
+	width: auto;
+	/*overflow-y:scroll;*/
+}
+
+.headerbox {
+	margin: 0px auto 0px auto;
+	width: 1000px;
+}
+
+.headerimg {
+	float: left;
+}
+
+.innerContainer {
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	background-color: #fff;
+	border: 1px #eee solid;
+	font-size: 10pt;
+	height: auto;
+	margin: 0px;
+	padding: 10px;
+	width: auto;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.items {
+	display: none;
+}
+
+.navbar {
+	text-align: center;
+}
+
+.navbar-default {
+	background-color: #FFF;
+}
+
+.subtitle {
+	font-family: 'Lobster', cursive;
+	width: 100%;
+	text-align: center;
+}
+
+.text {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	padding: 0 10px 0 10px;
+}
+
+.btn-default {
+	background-color: #e8e4de;
+}
+
+.btn-active {
+	background-color: #dde4dc;
+}
+
+.btn-hover {
+	background-color: #696969;
+}
+
+.ui-icon-circle-close {
+	cursor: pointer;
+	margin-right: 3px;
+	vertical-align: middle;
+}
+
+.ui-tabs .ui-tabs-panel {
+	margin: 10px 0 0 0;
+	padding: 0px;
+}
+
+.ui-widget-header {
+	background: #0c77ab
+		repeat-x
+}
+
+span.multiple_candidate_label {
+	color: #000000;
+	background-color: #FFDD00;
+}
+
+span.single_candidate_label {
+	color: #000000;
+	background-color: lightgreen;
+}
+
+span.no_candidates_label {
+	color: #000000;
+	background-color: #FF6A6A;
+}
+
+span.user_decided {
+	color: #000000;
+	background-color: lightblue;
+}
